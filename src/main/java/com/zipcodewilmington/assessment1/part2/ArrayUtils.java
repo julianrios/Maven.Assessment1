@@ -28,16 +28,16 @@ public class ArrayUtils {
      * @return an array with identical content excluding the specified `objectToRemove`
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
-    public static Object[] removeValue(Object[] objectArray, Object objectToRemove) {
-        Object[] arr = new Object[objectArray.length-1];
+    public static Integer[] removeValue(Integer[] objectArray, Integer objectToRemove) {
+        Integer[] arr = new Integer[objectArray.length-1];
 
         Integer[] integersArray = new Integer[objectArray.length];
-        String stringToRemove = objectToRemove.toString();
-        Integer integerToRemove = Integer.valueOf(stringToRemove);
+//        String stringToRemove = objectToRemove.toString();
+//        Integer integerToRemove = Integer.valueOf(stringToRemove);
         System.arraycopy(objectArray, 0, integersArray, 0, objectArray.length);
 
         for(Integer number : integersArray) {
-            if(number.equals(integerToRemove)) {
+            if(number.equals(objectToRemove)) {
                 continue;
             }
             for (int i = 0; i < arr.length; i++) {

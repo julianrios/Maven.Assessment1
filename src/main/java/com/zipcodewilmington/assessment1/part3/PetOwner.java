@@ -1,5 +1,8 @@
 package com.zipcodewilmington.assessment1.part3;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -9,18 +12,18 @@ public class PetOwner {
      * @param pets array of Pet object
      */
     private String name;
-    private Pet[] pets;
+    private Pet[] pets = new Pet[10];
     public PetOwner(String name, Pet... pets) {
         this.name = name;
-
-
     }
 
     /**
      * @param pet pet to be added to the composite collection of Pets
      */
     public void addPet(Pet pet) {
-        this.pets[0] = pet;
+        for (int i = 0; i < pets.length; i++) {
+            pets[i] = pet;
+        }
     }
 
     /**
@@ -67,14 +70,14 @@ public class PetOwner {
      * @return the number of Pet objects stored in this class
      */
     public Integer getNumberOfPets() {
-        return null;
+        return pets.length;
     }
 
     /**
      * @return the name property of the Pet
      */
     public String getName() {
-        return null;
+        return this.name;
     }
 
     /**

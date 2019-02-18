@@ -27,8 +27,8 @@ public abstract class Pet implements Animal {
      * @param age age of this pet
      */
     public Pet(int age) {
-        // shouldn't this be empty?
-        this("Test", age);
+        // name is not set to empty string in test to use constructor calling
+        this.age = age;
     }
 
     /**
@@ -59,7 +59,7 @@ public abstract class Pet implements Animal {
      * ensure this instance of `Pet` is added to the owner's composite `pets` list
      */
     public void setOwner(PetOwner newPetOwner) {
-        newPetOwner.addPet(this);
+//        newPetOwner;
     }
 
     /**

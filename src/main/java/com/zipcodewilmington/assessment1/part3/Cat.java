@@ -17,7 +17,7 @@ public class Cat extends Pet {
      * @param age age of this Cat
      */
     public Cat(Integer age) {
-        super(age);
+        super("Cat name", age);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Cat extends Pet {
      * age is 0
      */
     public Cat() {
-        super();
+        super("Cat name");
     }
 
     /**

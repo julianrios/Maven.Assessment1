@@ -1,6 +1,9 @@
 package com.zipcodewilmington.assessment1.part2;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by leon on 2/16/18.
@@ -29,22 +32,16 @@ public class ArrayUtils {
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
     public static Integer[] removeValue(Integer[] objectArray, Integer objectToRemove) {
-        Integer[] arr = new Integer[objectArray.length-1];
-
-        Integer[] integersArray = new Integer[objectArray.length];
-//        String stringToRemove = objectToRemove.toString();
-//        Integer integerToRemove = Integer.valueOf(stringToRemove);
-        System.arraycopy(objectArray, 0, integersArray, 0, objectArray.length);
-
-        for(Integer number : integersArray) {
-            if(number.equals(objectToRemove)) {
+        List<Integer> integersAsList = new ArrayList<>();
+        for(Integer number : objectArray) {
+            if(number == objectToRemove) {
                 continue;
             }
-            for (int i = 0; i < arr.length; i++) {
-                arr[i] = number;
-            }
+            integersAsList.add(number);
         }
-        return arr;
+        Integer[] arrayAfterDeletion = new Integer[integersAsList.size()];
+        arrayAfterDeletion = integersAsList.toArray(arrayAfterDeletion);
+        return arrayAfterDeletion;
     }
 
     /**
@@ -79,7 +76,18 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
-        return null;
+        Integer[] integerArray = Arrays.copyOfRange(objectArray, 0, objectArray.length, Integer[].class);
+        return countOccurences(integerArray);
+    }
+
+    public static Integer countOccurences(Integer[] objectArray) {
+        int leastOccurrence = 0;
+        for (int i = 0; i < objectArray.length-1; i++) {
+                if((objectArray[i] != objectArray[i+1]) && (objectArray[i] != objectArray[i-1])) {
+                    leastOccurrence = objectArray[i];
+            }
+        }
+        return leastOccurrence;
     }
 
     /**

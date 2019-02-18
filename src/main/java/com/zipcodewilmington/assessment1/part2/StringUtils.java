@@ -11,7 +11,8 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return an array of strings, each element representative of a respective word in the sentence
      */
     public static String[] getWords(String sentence) {
-        return null;
+        String[] words = sentence.split("\\s+");
+        return words;
     }
 
 
@@ -21,7 +22,8 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word of the sentence
      */
     public static String getFirstWord(String sentence) {
-        return null;
+        String[] words = getWords(sentence);
+        return words[0];
     }
 
     /**
@@ -30,7 +32,10 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order
      */
     public static String reverseFirstWord(String sentence) {
-        return null;
+        String firstWord = getFirstWord(sentence);
+        StringBuilder reversedWord = new StringBuilder(firstWord);
+        String reversedStr = reversedWord.reverse().toString();
+        return reversedStr;
     }
 
     /**
@@ -39,7 +44,9 @@ public class StringUtils {
      * given a string containing words delimited by spaces, representative of a sentence, return the first word with identical contents in reverse order with the first character capitalized
      */
     public static String reverseFirstWordThenCamelCase(String sentence) {
-        return null;
+        String reverseAndCamelCased = reverseFirstWord(sentence);
+        reverseAndCamelCased = reverseAndCamelCased.substring(0,1).toUpperCase() + reverseAndCamelCased.substring(1);
+        return reverseAndCamelCased;
     }
 
 
@@ -50,7 +57,10 @@ public class StringUtils {
      * given a string and index, return an identical string excluding the character at the specified index
      */
     public static String removeCharacterAtIndex(String str, int index) {
-        return null;
+        StringBuilder removedCharStr = new StringBuilder(str);
+        removedCharStr = removedCharStr.deleteCharAt(index);
+        String strAfterCharRemoved = removedCharStr.toString();
+        return strAfterCharRemoved;
     }
 
 }

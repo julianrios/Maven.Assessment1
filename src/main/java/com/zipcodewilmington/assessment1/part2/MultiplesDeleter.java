@@ -1,5 +1,8 @@
 package com.zipcodewilmington.assessment1.part2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by leon on 2/16/18.
  */
@@ -10,7 +13,7 @@ public class MultiplesDeleter {
      * given an array of integers, named `ints` return an identical array with evens removed
      */
     public Integer[] deleteEvens(Integer[] ints) {
-        return null;
+        return deleteMultiplesOfN(ints, 2);
     }
 
     /**
@@ -19,7 +22,16 @@ public class MultiplesDeleter {
      * given an array of integers, named `ints` return an identical array with odds removed
      */
     public Integer[] deleteOdds(Integer[] ints) {
-        return null;
+        List<Integer> intsAsList = new ArrayList<>();
+        for(Integer number : ints) {
+            if(number % 2 == 1) {
+                continue;
+            }
+            intsAsList.add(number);
+        }
+        Integer[] removedEvens = new Integer[intsAsList.size()];
+        removedEvens = intsAsList.toArray(removedEvens);
+        return removedEvens;
     }
 
     /**
@@ -28,7 +40,7 @@ public class MultiplesDeleter {
      * given an array of integers, named `ints` return an identical array with numbers indivisible by 3 removed
      */
     public Integer[] deleteMultiplesOf3(Integer[] ints) {
-        return null;
+        return deleteMultiplesOfN(ints, 3);
     }
 
     /**
@@ -38,6 +50,15 @@ public class MultiplesDeleter {
      * given an array of integers, named `ints` return an identical array with numbers indivisible by `multiple` removed
      */
     public Integer[] deleteMultiplesOfN(Integer[] ints, int multiple) {
-        return null;
+        List<Integer> integersAsList = new ArrayList<>();
+        for(Integer number : ints) {
+            if(number % multiple == 0) {
+                continue;
+            }
+            integersAsList.add(number);
+        }
+        Integer[] arrayAfterDeletion = new Integer[integersAsList.size()];
+        arrayAfterDeletion = integersAsList.toArray(arrayAfterDeletion);
+        return arrayAfterDeletion;
     }
 }

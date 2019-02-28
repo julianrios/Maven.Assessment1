@@ -13,21 +13,30 @@ public class RockPaperSissorsEvaluator {
      * @return the respective winning move
      */
     public String getWinningMove(String handSign) {
-        String winningMove = "";
-        switch (handSign) {
-            case "rock":
-                winningMove  = "paper";
-                break;
-
-            case "paper":
-                winningMove  = "scissor";
-                break;
-
-            case "scissor":
-                winningMove  = "rock";
-                break;
+        if(ROCK.equals(handSign)) {
+            return PAPER;
+        } else if(PAPER.equals(handSign)) {
+            return SCISSOR;
+        } else {
+            return ROCK;
         }
-        return winningMove;
+//
+//
+//        String winningMove = "";
+//        switch (handSign) {
+//            case "rock":
+//                winningMove  = "paper";
+//                break;
+//
+//            case "paper":
+//                winningMove  = "scissor";
+//                break;
+//
+//            case "scissor":
+//                winningMove  = "rock";
+//                break;
+//        }
+//        return winningMove;
     }
 
     /**
@@ -35,21 +44,29 @@ public class RockPaperSissorsEvaluator {
      * @return the respective losing move
      */
     public String getLosingMove(String handSign) {
-        String losingMove = "";
-        switch (handSign) {
-            case "rock":
-                losingMove  = "scissor";
-                break;
-
-            case "paper":
-                losingMove  = "rock";
-                break;
-
-            case "scissors":
-                losingMove  = "paper";
-                break;
+        if(ROCK.equals(handSign)) {
+            return SCISSOR;
+        } else if(PAPER.equals(handSign)) {
+            return ROCK;
+        } else {
+            return PAPER;
         }
-        return losingMove;
+
+//        String losingMove = "";
+//        switch (handSign) {
+//            case "rock":
+//                losingMove  = "scissor";
+//                break;
+//
+//            case "paper":
+//                losingMove  = "rock";
+//                break;
+//
+//            case "scissors":
+//                losingMove  = "paper";
+//                break;
+//        }
+//        return losingMove;
     }
 
     /**

@@ -31,17 +31,33 @@ public class ArrayUtils {
      * @return an array with identical content excluding the specified `objectToRemove`
      * Given an array of objects, name `objectArray`, and an object `objectToRemove`, return an array of objects with identical contents excluding `objectToRemove`
      */
-    public static Integer[] removeValue(Integer[] objectArray, Integer objectToRemove) {
-        List<Integer> integersAsList = new ArrayList<>();
-        for(Integer number : objectArray) {
-            if(number == objectToRemove) {
-                continue;
+    public static Object[] removeValue(Integer[] objectArray, Integer objectToRemove) {
+        int newLength = objectArray.length - getNumberOfOccurrences(objectArray, objectToRemove);
+
+        Object[] newArray = Arrays.copyOf(objectArray, newLength); // returns an integer array
+        int newArrayIndex = 0;
+
+
+        for (Object item : objectArray) {
+            if(!item.equals(objectToRemove)) {
+                newArray[newArrayIndex] = item;
+                // tells you how many elements to add in
+                newArrayIndex++;
             }
-            integersAsList.add(number);
         }
-        Integer[] arrayAfterDeletion = new Integer[integersAsList.size()];
-        arrayAfterDeletion = integersAsList.toArray(arrayAfterDeletion);
-        return arrayAfterDeletion;
+        // return Arrays.copyOf(newArray, newArrayIndex); // newArray with a new length
+        return newArray;
+
+//        List<Integer> integersAsList = new ArrayList<>();
+//        for(Integer number : objectArray) {
+//            if(number == objectToRemove) {
+//                continue;
+//            }
+//            integersAsList.add(number);
+//        }
+//        Integer[] arrayAfterDeletion = new Integer[integersAsList.size()];
+//        arrayAfterDeletion = integersAsList.toArray(arrayAfterDeletion);
+//        return arrayAfterDeletion;
     }
 
     /**
@@ -50,24 +66,37 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the most frequently occuring object in the array
      */
     public static Object getMostCommon(Object[] objectArray) {
-        int count = 1;
-        int tempCount = 0;
-        Object popular = objectArray[0];
-        Object temp = null;
-        for (int i = 0; i < objectArray.length-1; i ++) {
-            temp = objectArray[i];
-            tempCount = 0;
-            for (int j = 1; j < objectArray.length; j++) {
-                if(temp.equals(objectArray[j])) {
-                    tempCount++;
-                }
-                if (tempCount > count) {
-                    popular = temp;
-                    count = tempCount;
-                }
+        Object common = objectArray[0];
+        int commonCount = getNumberOfOccurrences(objectArray, common);
+
+        for (Object currentObject : objectArray) {
+            int currentCount = getNumberOfOccurrences(objectArray, currentObject);
+
+            if (currentCount > commonCount) {
+                common = currentObject;
+                commonCount = currentCount;
             }
         }
-        return popular;
+        return common;
+
+//        int count = 1;
+//        int tempCount = 0;
+//        Object popular = objectArray[0];
+//        Object temp = null;
+//        for (int i = 0; i < objectArray.length-1; i ++) {
+//            temp = objectArray[i];
+//            tempCount = 0;
+//            for (int j = 1; j < objectArray.length; j++) {
+//                if(temp.equals(objectArray[j])) {
+//                    tempCount++;
+//                }
+//                if (tempCount > count) {
+//                    popular = temp;
+//                    count = tempCount;
+//                }
+//            }
+//        }
+//        return popular;
     }
 
     /**
@@ -76,8 +105,22 @@ public class ArrayUtils {
      * given an array of objects, named `objectArray` return the least frequently occuring object in the array
      */
     public static Object getLeastCommon(Object[] objectArray) {
-        Integer[] integerArray = Arrays.copyOfRange(objectArray, 0, objectArray.length, Integer[].class);
-        return countOccurences(integerArray);
+        Object leastCommon = objectArray[0];
+        int leastCount = getNumberOfOccurrences(objectArray, leastCommon);
+
+        for (Object item : objectArray) {
+            Object current = item;
+            int currentCount = getNumberOfOccurrences(objectArray, current);
+
+            if (currentCount < leastCount) {
+                leastCommon = current;
+                leastCount = currentCount;
+            }
+        }
+
+        return leastCommon;
+//        Integer[] integerArray = Arrays.copyOfRange(objectArray, 0, objectArray.length, Integer[].class);
+//        return countOccurences(integerArray);
     }
 
     public static Integer countOccurences(Integer[] objectArray) {

@@ -4,9 +4,11 @@ package com.zipcodewilmington.assessment1.part3;
  * Created by leon on 2/16/18.
  */
 
-public abstract class Pet implements Animal {
+public abstract class Pet implements Animal, Comparable<Pet> {
     private String name;
     private Integer age;
+    private PetOwner owner;
+
     /**
      * nullary constructor
      * by default, pet has age of 0; name of "";
@@ -20,6 +22,8 @@ public abstract class Pet implements Animal {
      */
     public Pet(String name) {
         this(name, 0);
+//        this.name = name;
+//        this.age = 0;
     }
 
 
@@ -59,13 +63,20 @@ public abstract class Pet implements Animal {
      * ensure this instance of `Pet` is added to the owner's composite `pets` list
      */
     public void setOwner(PetOwner newPetOwner) {
-//        newPetOwner;
+        this.owner = newPetOwner;
     }
 
     /**
      * @return PetOwner object whose composite `pets` collection contains this Pet instance
      */
     public PetOwner getOwner() {
-        return null;
+        return this.owner;
+    }
+
+    @Override
+    public int compareTo(Pet pet) {
+        // Compares two Integer objects numerically.
+        // don't need to implement since age is an integer and it has its own compareTo
+        return age.compareTo(pet.getAge());
     }
 }

@@ -37,8 +37,12 @@ public class IntegerUtils {
      * @return integer with identical digits in the reverse order
      */
     public static Integer reverseDigits(Integer val) {
-        StringBuilder reverseDigitsStr = new StringBuilder(val.toString());
-        String digitsAsStr = reverseDigitsStr.reverse().toString();
-        return val.valueOf(digitsAsStr);
+        String number = val.toString();
+        String reverse = BasicStringUtils.reverse(number);
+        return Integer.parseInt(reverse);
+//
+//        StringBuilder reverseDigitsStr = new StringBuilder(val.toString());
+//        String digitsAsStr = reverseDigitsStr.reverse().toString();
+//        return val.valueOf(digitsAsStr);
     }
 }
